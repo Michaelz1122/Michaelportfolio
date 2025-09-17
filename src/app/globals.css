@@ -1,0 +1,955 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom animations for gradient text */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient 3s ease infinite;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* RTL Support - Comprehensive Arabic Text Fix */
+[dir="rtl"] {
+  text-align: right;
+  direction: rtl;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+}
+
+/* Force RTL text direction for all text elements */
+[dir="rtl"] * {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Fix text alignment classes */
+[dir="rtl"] .text-left {
+  text-align: right !important;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left !important;
+}
+
+[dir="rtl"] .text-center {
+  text-align: center !important;
+}
+
+[dir="rtl"] .text-start {
+  text-align: end !important;
+}
+
+[dir="rtl"] .text-end {
+  text-align: start !important;
+}
+
+/* Fix margin utilities */
+[dir="rtl"] .mr-auto {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+[dir="rtl"] .ml-auto {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+[dir="rtl"] .mr-2 {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+[dir="rtl"] .ml-2 {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+
+[dir="rtl"] .mr-4 {
+  margin-left: 1rem;
+  margin-right: 0;
+}
+
+[dir="rtl"] .ml-4 {
+  margin-right: 1rem;
+  margin-left: 0;
+}
+
+[dir="rtl"] .mr-6 {
+  margin-left: 1.5rem;
+  margin-right: 0;
+}
+
+[dir="rtl"] .ml-6 {
+  margin-right: 1.5rem;
+  margin-left: 0;
+}
+
+/* Fix padding utilities */
+[dir="rtl"] .pl-2 {
+  padding-right: 0.5rem;
+  padding-left: 0;
+}
+
+[dir="rtl"] .pr-2 {
+  padding-left: 0.5rem;
+  padding-right: 0;
+}
+
+[dir="rtl"] .pl-4 {
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+[dir="rtl"] .pr-4 {
+  padding-left: 1rem;
+  padding-right: 0;
+}
+
+[dir="rtl"] .pl-6 {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+[dir="rtl"] .pr-6 {
+  padding-left: 1.5rem;
+  padding-right: 0;
+}
+
+[dir="rtl"] .pl-8 {
+  padding-right: 2rem;
+  padding-left: 0;
+}
+
+[dir="rtl"] .pr-8 {
+  padding-left: 2rem;
+  padding-right: 0;
+}
+
+/* Fix positioning */
+[dir="rtl"] .left-0 {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .right-0 {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .left-auto {
+  left: auto;
+  right: auto;
+}
+
+[dir="rtl"] .right-auto {
+  right: auto;
+  left: auto;
+}
+
+/* Fix border radius */
+[dir="rtl"] .rounded-l-full {
+  border-radius: 9999px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+}
+
+[dir="rtl"] .rounded-r-full {
+  border-radius: 9999px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+}
+
+[dir="rtl"] .rounded-l {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+[dir="rtl"] .rounded-r {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
+}
+
+/* Fix flex direction */
+[dir="rtl"] .flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .flex-col-reverse {
+  flex-direction: column-reverse;
+}
+
+/* Fix transforms - removed text inversion */
+[dir="rtl"] .transform {
+  /* Removed transform: scaleX(-1) to prevent text inversion */
+}
+
+[dir="rtl"] .flip-rtl {
+  /* Removed transform: scaleX(-1) to prevent text inversion */
+}
+
+/* Arabic text fix for case studies section */
+[dir="rtl"] .case-studies-text {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .case-studies-title {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .case-studies-description {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .case-studies-result {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  text-align: center;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .case-studies-label {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .case-studies-value {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  text-align: left;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+/* Arabic numbers fix - display numbers LTR within RTL text */
+[dir="rtl"] .arabic-numbers {
+  direction: ltr;
+  unicode-bidi: embed;
+  text-align: left;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .numbers-container {
+  direction: ltr;
+  unicode-bidi: embed;
+  text-align: left;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .result-number {
+  direction: ltr;
+  unicode-bidi: embed;
+  text-align: center;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+  display: inline-block;
+}
+
+[dir="rtl"] .mixed-text-arabic .numbers {
+  direction: ltr;
+  unicode-bidi: embed;
+  text-align: left;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Fix font rendering for Arabic */
+[dir="rtl"] .font-sans {
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+/* Fix text elements */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] p {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] span {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] li {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .card-title,
+[dir="rtl"] .card-description {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .font-medium,
+[dir="rtl"] .font-semibold,
+[dir="rtl"] .font-bold {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .text-sm,
+[dir="rtl"] .text-base,
+[dir="rtl"] .text-lg,
+[dir="rtl"] .text-xl,
+[dir="rtl"] .text-2xl,
+[dir="rtl"] .text-3xl,
+[dir="rtl"] .text-4xl,
+[dir="rtl"] .text-5xl,
+[dir="rtl"] .text-6xl,
+[dir="rtl"] .text-7xl,
+[dir="rtl"] .text-8xl,
+[dir="rtl"] .text-9xl {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+/* Fix flex containers with text */
+[dir="rtl"] .flex.items-center span {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .flex.justify-between span {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .flex.items-start span {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .flex.items-end span {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+/* Fix badges and buttons */
+[dir="rtl"] .badge {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] .btn {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] button {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+/* Fix form elements */
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+[dir="rtl"] input::placeholder,
+[dir="rtl"] textarea::placeholder {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+/* Fix for center alignment for section titles */
+[dir="rtl"] .text-center h1,
+[dir="rtl"] .text-center h2,
+[dir="rtl"] .text-center h3,
+[dir="rtl"] .text-center h4,
+[dir="rtl"] .text-center h5,
+[dir="rtl"] .text-center h6 {
+  text-align: center !important;
+}
+
+[dir="rtl"] .text-center p,
+[dir="rtl"] .text-center span {
+  text-align: center !important;
+}
+
+/* Force center alignment for hero title in Arabic */
+[dir="rtl"] .hero-title {
+  text-align: center !important;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Force center alignment for section titles in Arabic */
+[dir="rtl"] .section-title {
+  text-align: center !important;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Force center alignment for regular section titles in Arabic */
+[dir="rtl"] h2.text-5xl,
+[dir="rtl"] h2.text-6xl {
+  text-align: center !important;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+[dir="rtl"] h2.text-5xl:not(.section-title),
+[dir="rtl"] h2.text-6xl:not(.section-title) {
+  text-align: center !important;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+
+/* Force center alignment for section header decorative elements */
+[dir="rtl"] .section-header-decoration {
+  text-align: center !important;
+  justify-content: center !important;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+[dir="rtl"] .section-header-decoration span {
+  text-align: center !important;
+}
+
+/* Force center alignment for section containers in Arabic */
+[dir="rtl"] .text-center {
+  text-align: center !important;
+}
+
+[dir="rtl"] .text-center > * {
+  text-align: center !important;
+}
+
+[dir="rtl"] .text-center h1,
+[dir="rtl"] .text-center h2,
+[dir="rtl"] .text-center h3,
+[dir="rtl"] .text-center h4,
+[dir="rtl"] .text-center h5,
+[dir="rtl"] .text-center h6 {
+  text-align: center !important;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Enhanced center alignment for all heading elements in Arabic */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+  text-align: center !important;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Fix for section title stacking - ensure proper vertical spacing */
+[dir="rtl"] .section-header {
+  margin-bottom: 2rem !important;
+}
+
+[dir="rtl"] .section-header h2 {
+  margin-top: 0.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+[dir="rtl"] .section-header .inline-flex {
+  margin-bottom: 1rem !important;
+}
+
+[dir="rtl"] .section-header p {
+  margin-top: 1rem !important;
+}
+
+/* Make section titles appear vertically stacked in center */
+[dir="rtl"] .section-header .inline-flex {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+[dir="rtl"] .section-header .inline-flex .w-12 {
+  width: 100% !important;
+  max-width: 200px !important;
+  height: 2px !important;
+}
+
+[dir="rtl"] .section-header .inline-flex span.font-semibold.text-sm {
+  display: block !important;
+  text-align: center !important;
+  order: 2 !important;
+}
+
+[dir="rtl"] .section-header .inline-flex div:first-child {
+  order: 1 !important;
+}
+
+[dir="rtl"] .section-header .inline-flex div:last-child {
+  order: 3 !important;
+}
+
+[dir="rtl"] .section-header h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  text-align: center !important;
+}
+
+/* Apply the same vertical stacking to About section */
+[dir="rtl"] .about-section .inline-flex {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+[dir="rtl"] .about-section .inline-flex .w-12 {
+  width: 100% !important;
+  max-width: 200px !important;
+  height: 2px !important;
+}
+
+[dir="rtl"] .about-section .inline-flex span.font-semibold.text-sm {
+  display: block !important;
+  text-align: center !important;
+  order: 2 !important;
+}
+
+[dir="rtl"] .about-section .inline-flex div:first-child {
+  order: 1 !important;
+}
+
+[dir="rtl"] .about-section .inline-flex div:last-child {
+  order: 3 !important;
+}
+
+[dir="rtl"] .about-section h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  text-align: center !important;
+}
+
+/* Special case for section headers with decorative elements */
+[dir="rtl"] .section-header {
+  text-align: center !important;
+}
+
+[dir="rtl"] .section-header h2,
+[dir="rtl"] .section-header p {
+  text-align: center !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #2d3748;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4a5568;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+/* Fix for section titles being cut off */
+[dir="rtl"] .section-title {
+  line-height: 1.1;
+  padding: 0.3em 0;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Enhanced Arabic text display for all headings */
+[dir="rtl"] h1 {
+  line-height: 1.1;
+  padding: 0.2em 0;
+  margin-bottom: 0.5em;
+}
+
+[dir="rtl"] h2 {
+  line-height: 1.1;
+  padding: 0.2em 0;
+  margin-bottom: 0.5em;
+}
+
+[dir="rtl"] h3 {
+  line-height: 1.2;
+  padding: 0.1em 0;
+  margin-bottom: 0.4em;
+}
+
+[dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
+  line-height: 1.3;
+  padding: 0.1em 0;
+  margin-bottom: 0.3em;
+}
+
+/* Fix for uppercase tracking in Arabic section headers */
+[dir="rtl"] .uppercase {
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  padding: 0.2em 0;
+  display: inline-block;
+}
+
+/* Enhanced spacing for section header decorative elements */
+[dir="rtl"] .section-header-decoration {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+[dir="rtl"] .section-header-decoration span {
+  line-height: 1.4;
+  padding: 0.1em 0;
+  display: inline-block;
+}
+
+/* Center alignment for statistics cards in Arabic */
+[dir="rtl"] .stats-card {
+  text-align: center !important;
+}
+
+[dir="rtl"] .stats-card h3,
+[dir="rtl"] .stats-card p {
+  text-align: center !important;
+  direction: rtl;
+}
+
+[dir="rtl"] .stats-card .result-number {
+  text-align: center !important;
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* Center alignment for hero section in Arabic */
+[dir="rtl"] .hero-section {
+  text-align: center !important;
+}
+
+[dir="rtl"] .hero-section h1,
+[dir="rtl"] .hero-section p {
+  text-align: center !important;
+}
+
+/* Force center alignment for all section titles in Arabic */
+[dir="rtl"] .section-title {
+  text-align: center !important;
+  direction: rtl;
+}
+
+[dir="rtl"] .hero-title {
+  text-align: center !important;
+  direction: rtl;
+}
+
+/* Center alignment for grid items in Arabic */
+[dir="rtl"] .grid .text-center {
+  text-align: center !important;
+}
+
+[dir="rtl"] .grid .text-center h3,
+[dir="rtl"] .grid .text-center p {
+  text-align: center !important;
+}
+
+/* Center alignment for flex containers with centered content */
+[dir="rtl"] .flex.justify-center {
+  justify-content: center !important;
+}
+
+[dir="rtl"] .flex.items-center.justify-center {
+  justify-content: center !important;
+}
+
+[dir="rtl"] .flex.items-center.justify-center * {
+  text-align: center !important;
+}
+
+/* Special center alignment for statistics */
+[dir="rtl"] .stat-item {
+  text-align: center !important;
+}
+
+[dir="rtl"] .stat-value {
+  text-align: center !important;
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+[dir="rtl"] .stat-label {
+  text-align: center !important;
+  direction: rtl;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #2d3748;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4a5568;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+
+/* Enhanced stats display for both languages - numbers above, text below */
+.stats-number {
+  text-align: center !important;
+  display: block !important;
+  margin-bottom: 0.5rem !important;
+  font-weight: bold !important;
+  line-height: 1.2 !important;
+}
+
+.stats-label {
+  text-align: center !important;
+  display: block !important;
+  margin-top: 0.25rem !important;
+  line-height: 1.3 !important;
+}
+
+/* Ensure consistent stats display in both LTR and RTL */
+[dir='ltr'] .stats-number,
+[dir='rtl'] .stats-number {
+  text-align: center !important;
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* Ensure consistent stats styling for both languages */
+[dir='rtl'] .stats-label {
+  text-align: center !important;
+}
